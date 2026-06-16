@@ -18,6 +18,8 @@ Include a simple diagram:
         ▼                 ▼
     Web Server 1      Web Server 2
       Ubuntu             Ubuntu
+
+
 3. Technologies Used
 - Ansible
 - AWS EC2
@@ -26,6 +28,8 @@ Include a simple diagram:
 - SSH
 - Jinja2
 - YAML
+
+
 4. Features
 
 Example:
@@ -39,41 +43,85 @@ Example:
 ✅ Roles
 ✅ Multi-Server Management
 ✅ Dev & Prod Inventories
+
+
 5. Project Structure
 
-Include the final directory tree.
+─ansible-server-automation-main
+    ├───host_vars
+    ├───inventory
+    │   ├───dev
+    │   │   ├───group_vars
+    │   │   └───host_vars
+    │   └───prod
+    │       ├───group_vars
+    │       └───host_vars
+    ├───playbooks
+    ├───roles
+    │   └───webserver
+    │       ├───defaults
+    │       ├───handlers
+    │       ├───meta
+    │       ├───tasks
+    │       ├───templates
+    │       ├───tests
+    │       └───vars
+    └───screenshots
 
-6. Prerequisites
+7. Prerequisites
 
-Mention:
+- **Ubuntu WSL**
+- **AWS Account**
+- **EC2 Instances**
+- **SSH Key**
+- **Ansible installed**
 
-Ubuntu WSL
-AWS Account
-EC2 Instance
-SSH Key
-Ansible installed
+![Ansible Version](screenshots/ansible-version.png)
+
+
 7. Setup Instructions
 
 Example:
 
 git clone <repo>
 
-cd ansible-project
+cd ansible-server-automation
 
-ansible-playbook \
--i inventory/dev/hosts \
-playbooks/site.yml
-8. Screenshots
+ansible-playbook -i inventory/dev/hosts playbooks/site.yml
 
-Embed the screenshots you created.
 
-9. Future Improvements
+9. Screenshots
 
-Ideas:
+### AWS Infrastructure
+*Provisioned instances ready for configuration.*
 
-Use Ansible Vault for secrets
-Dynamic AWS inventory
-Docker deployment
-Install Docker with Ansible
-Configure Jenkins
-Deploy Kubernetes components
+![AWS Instances](screenshots/instances-list-to-configure.png)
+![Instance Summary](screenshots/instance-1-summary.png)
+
+### Connectivity Verification
+*Verifying SSH connectivity and Ansible reachability.*
+
+![Ansible Ping](screenshots/anible-web-ping.png)
+
+### Playbook Execution
+*Running the automation playbooks on Dev and Prod environments.*
+
+#### Dev Environment
+![Dev Playbook](screenshots/ansible-dev-playbook-running.png)
+
+#### Prod Environment
+![Prod Playbook](screenshots/ansible-prod-playbook-running.png)
+
+### Verification
+*Nginx service running successfully on the remote server.*
+
+![Nginx Running](screenshots/nginx-running-on-remote-server.png)
+
+10. Future Improvements
+
+- Use Ansible Vault for secrets
+- Dynamic AWS inventory
+- Docker deployment
+- Install Docker with Ansible
+- Configure Jenkins
+- Deploy Kubernetes components
