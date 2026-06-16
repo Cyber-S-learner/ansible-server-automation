@@ -1,0 +1,15 @@
+---
+  - name: Manage Users
+    hosts: web
+    become: yes
+
+    
+    tasks:
+      - name: Create devops user
+        user:
+          name: devops
+          shell: /bin/bash
+          create_home: yes
+          state: present
+          groups: sudo
+          append: yes

@@ -1,0 +1,22 @@
+---
+- name: Deploy Website Using Jinja2 Template
+  hosts: web
+  become: yes
+
+  vars:
+    company_name: My Production Server
+
+  tasks:
+
+    - name: Deploy template
+      template:
+        src: ../templates/index.html.j2
+        dest: /var/www/html/index.html
+      notify: Restart Nginx
+
+  handlers:
+
+    - name: Restart Nginx
+      service:
+        name: nginx
+        state: restarted

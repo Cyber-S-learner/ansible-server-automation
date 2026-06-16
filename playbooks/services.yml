@@ -1,0 +1,16 @@
+---
+  - name: Manage Nginx Service
+    hosts: web
+    become: yes
+
+    tasks:
+      - name: Ensure Nginx is installed
+        apt:
+          name: nginx
+          state: present
+
+      - name: Start and enable Nginx
+        service: 
+          name: nginx
+          state: started
+          enabled: yes

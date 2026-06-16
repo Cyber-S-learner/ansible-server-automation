@@ -1,0 +1,22 @@
+---
+  - name: Deploy Website with Handler
+    hosts: web
+    become: yes
+
+
+    tasks: 
+      - name: Copy index.html
+        copy:
+          src: ~/ansible-project/files/index.html
+          dest: /var/www/html/index.html
+          owner: root
+          group: root
+          mode: '0644'
+        notify: Restart Nginx
+
+    handlers:
+      - name: Restart Nginx
+        service:
+          name: nginx
+          state: restarted
+
